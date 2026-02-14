@@ -32,6 +32,8 @@ jobs:
 
       # 第五步：构建项目
       - name: 构建项目
+        env:
+          BASE_URL: /onlyoffice-web-local/
         run: pnpm run build
 
       # 第六步：将构建产物打包成 dist.zip
@@ -52,6 +54,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist  # 指定构建输出目录
+          cname:  # 如果有自定义域名可以设置
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
 
       # 第十步：读取 package.json 版本号
       - name: 读取版本号

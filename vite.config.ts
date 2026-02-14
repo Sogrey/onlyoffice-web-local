@@ -11,8 +11,10 @@ import viteCompression from 'vite-plugin-compression'
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd())
+    // 生产环境使用 /onlyoffice-web-local/ 作为 base 路径
+    const base = mode === 'production' ? '/onlyoffice-web-local/' : '/'
     return {
-      base: '/onlyoffice-web-local/',
+      base,
       server: {
         port: parseInt(env.VITE_PORT) || 3000,
         host: '0.0.0.0',
