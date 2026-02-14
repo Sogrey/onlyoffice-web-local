@@ -12,11 +12,6 @@ declare module 'vue' {
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElUpload: typeof import('element-plus/es')['ElUpload']
-    IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
-    IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
-    IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
-    IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
-    IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
