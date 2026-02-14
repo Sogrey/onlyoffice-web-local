@@ -52,13 +52,19 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist  # 指定构建输出目录
+          destination_dir: /  # 部署到 gh-pages 分支的根目录
 
-      # 第十步：创建 GitHub Release 并上传压缩包
+      # 第十步：读取 package.json 版本号
+      - name: 读取版本号
+        id: package_version
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      # 第十一步：创建 GitHub Release 并上传压缩包
       - name: 发布 Release 并上传构建包
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: release-${{ github.run_number }}  # 每次构建使用唯一的 tag
-          name: Release ${{ github.run_number }}      # Release 名称
+          tag_name: v${{ steps.package_version.outputs.version }}-${{ github.run_number }}  # 版本号+构建号
+          name: Release ${{ steps.package_version.outputs.version }}-${{ github.run_number }}  # Release 名称
           files: |
             dist.zip
         env:
