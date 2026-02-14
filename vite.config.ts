@@ -12,13 +12,13 @@ import viteCompression from 'vite-plugin-compression'
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd())
     return {
-      base: './',
+      base: '/onlyoffice-web-local/',
       server: {
         port: parseInt(env.VITE_PORT) || 3000,
         host: '0.0.0.0',
       },
       build: {
-        outDir: 'html',
+        outDir: 'dist',
       },
       plugins: [
         AutoImport({
